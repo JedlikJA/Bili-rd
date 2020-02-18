@@ -12,12 +12,13 @@ namespace biliárd
         {
             List<int> golyók = new List<int>();
             Kezdés(golyók);
-            for (int i = 0; i < golyók.Count; i++)
+            int leeső;           
+            do
             {
-                Console.WriteLine(golyók[i]);
-            }
-            int leeső = Leesősorsoló(golyók);
-            Kiíró(golyók);
+                leeső = Leesősorsoló(golyók);
+                Kiíró(golyók);
+                Console.WriteLine(leeső);
+            } while (golyók.Contains(8));                     
             Console.ReadKey();
         }
 
@@ -27,13 +28,14 @@ namespace biliárd
             {
                 Console.Write($"{item} ");
             }
+            Console.WriteLine();
         }
 
         private static int Leesősorsoló(List<int> golyók)
         {
-            Random sorsoló = new Random();
+            Random sorsoló = new Random();          
             int szám = sorsoló.Next(golyók.Count);
-            golyók.Remove(szám);
+            golyók.Remove(golyók[szám]);          
             return golyók[szám];
         }
 
